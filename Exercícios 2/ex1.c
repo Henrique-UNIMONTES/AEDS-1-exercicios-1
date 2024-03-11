@@ -1,29 +1,5 @@
 #include <stdio.h>
 
-void sortVector(int *vector, int tamanho) {
-    int aux[tamanho];
-    int indices[tamanho];
-    
-    aux[0] = 0;
-    int menorValor = *vector[0];
-    
-    for (int j = 0; j < tamanho; j++) {
-        for (int i = 0; i < tamanho; i++) {
-            for (int i = 0; i < tamanho; i++) {
-                if ()
-            }
-            if (menorValor > *vector[i]) {
-                menorValor = *vector[i];
-                aux[j] = i;
-            }
-        }
-        
-        aux[j] = menorValor;
-    }
-    
-    *vector = aux;
-}
-
 int main() {
     int tamanho = 3;
     int num[tamanho];
@@ -33,5 +9,55 @@ int main() {
         scanf("%d", &num[i]);
     }
     
-    sortVector(&num, tamanho);
+    int aux[tamanho];
+    int indices[tamanho];
+    int menorValor;
+    int skipNext;
+    int indice;
+    
+    for (int i = 0; i < tamanho; i++) indices[i] = -1;
+    
+    for (int j = 0; j < tamanho; j++) {
+        for (int i = 0; i < tamanho; i++) {
+            int find = 0;
+            
+            for (int n = 0; n < tamanho; n++) {
+                if (indices[n] == i) {
+                    find = 1;
+                }
+            }
+            
+            if (find == 0) {
+                menorValor = num[i];
+                indice = i;
+                break;
+            }
+        }
+        
+        for (int i = 0; i < tamanho; i++) {
+            skipNext = 0;
+            
+            for (int n = 0; n < tamanho; n++) {
+                if (indices[n] == i) {
+                    skipNext = 1;
+                }
+            }
+            
+            if (skipNext != 1) {
+                if (menorValor > num[i]) {
+                    menorValor = num[i];
+                    indice = i;
+                }
+            }
+        }
+
+        indices[j] = indice;
+        aux[j] = menorValor;
+    }
+    
+    printf("\n-------------------------\n");
+    
+    for (int i = 0; i < tamanho; i++) {
+        printf("O %d° valor é: %i\n", i + 1, aux[i]);
+    }
 }
