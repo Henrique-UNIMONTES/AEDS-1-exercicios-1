@@ -1,13 +1,16 @@
 #include <stdio.h>
 
 int main() {
-    int tamanho = 3;
+    int tamanho = 3, wantToInverse = 0;
     int num[tamanho];
     
     for (int i = 0; i < tamanho; i++) {
         printf("Informe o valor do %d° número inteiro: ", i + 1);
         scanf("%d", &num[i]);
     }
+    
+    printf("Você deseja ordenar os valores em qual forma:\n[1] - Crescente\n[2] - Decrescente\n");
+    scanf("%d", &wantToInverse);
     
     int aux[tamanho];
     int indices[tamanho];
@@ -53,6 +56,16 @@ int main() {
 
         indices[j] = indice;
         aux[j] = menorValor;
+    }
+    
+    if (wantToInverse == 2) {
+        for (int i = 0; i < tamanho; i++) {
+            num[i] = aux[tamanho - 1 - i];
+        }
+        
+        for (int i = 0; i < tamanho; i++) {
+            aux[i] = num[i];
+        }
     }
     
     printf("\n-------------------------\n");
