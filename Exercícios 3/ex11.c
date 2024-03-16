@@ -1,5 +1,3 @@
-//INCOMPLETE
-
 #include <stdio.h>
 
 int calcMDC(int numero1, int numero2) {
@@ -14,20 +12,19 @@ int calcMDC(int numero1, int numero2) {
             if (primo % i == 0) divisores++;  
         }
         
-        if (divisores > 2) {
+        if (divisores > 1) {
             primo++;
             continue;
         }
         
         if (n1 % primo == 0 && n2 % primo == 0) {
             mdc *= primo;
-            n1 /= primo;
-            n2 /= primo;
         }
         
         if (n1 % primo == 0) n1 /= primo;
         if (n2 % primo == 0) n2 /= primo;
-        primo++;
+        
+        if (n1 % primo != 0 && n2 % primo != 0) primo++;
     }
 }
 
