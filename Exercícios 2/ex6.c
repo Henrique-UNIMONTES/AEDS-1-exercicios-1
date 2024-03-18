@@ -1,11 +1,11 @@
 #include <stdio.h>
 
 int verifyDate(int d, int m, int a) {
-    if (m < 0 || m > 12) return 0;
+    if (m < 1 || m > 12) return 0;
     
     if (a < 0) return 0;
     
-    if (d > 31 || d < 0) return 0;
+    if (d > 31 || d < 1) return 0;
     
     switch (m) {
         case 2:

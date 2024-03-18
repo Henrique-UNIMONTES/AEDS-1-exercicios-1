@@ -1,25 +1,43 @@
-// INCOMPLETE
+//NEED'S ADJUSTMENT
 
 #include <stdio.h>
 
 int main() {
-    int length = 3, distintos = 0;
-    int num[length], buffer[length];
+    int length = 3, distintos = 0, fatorial = 6;
+    int num[length], key[fatorial], value[fatorial];
     
     for (int i = 0; i < length; i++) {
-        buffer[i] = -1;
         printf("Informe o %d° número: ", i + 1);
         scanf("%d", &num[i]);
     }
     
+    for (int i = 0; i < fatorial; i++) {
+        key[i] = -1;
+        value[i] = -1;
+    }
+    
+    int count = 0;
+    
     for (int i = 0; i < length; i++) {
         for (int j = 0; j < length; j++) {
-            if (buffer[j] != i && buffer[i] != j) {
-                if (num[i] != num[j]) {
+            if (num[i] != num[j]) {
+                int notInBuffer = 1;
+                
+                for (int n = 0; n < fatorial; n++) {
+                    if (key[n] == j && value[n] == i) {
+                        notInBuffer = 0;
+                        break;
+                    }
+                }
+                
+                if (notInBuffer) {
                     distintos++;
-                    buffer[i] = j;
+                    key[count] = i;
+                    value[count] = j;
                 }
             }
+            
+            if (i != j) count++;
         }
     }
     
